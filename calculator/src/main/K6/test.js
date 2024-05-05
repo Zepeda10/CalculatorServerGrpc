@@ -20,6 +20,10 @@ export default () => {
 
   check(response, {
     'status is OK': (r) => r && r.status === grpc.StatusOK,
+    'status is Canceled': (r) => r && r.status === grpc.StatusCanceled,
+    'status is Unknown': (r) => r && r.status === grpc.StatusUnknown,
+    'status is InvalidArgument': (r) => r && r.status === grpc.StatusInvalidArgument,
+    'status is DeadlineExceeded': (r) => r && r.status === grpc.StatusDeadlineExceeded,
   });
 
   console.log(JSON.stringify(response.message));
