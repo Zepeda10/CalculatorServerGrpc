@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.students</groupId>
-    <artifactId>StudentsServer</artifactId>
+    <groupId>org.calculator</groupId>
+    <artifactId>CalculatorServerGrpc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>students_server</name>
+    <name>calculator_server</name>
     <description>Practice Project: Java with grpc</description>
 
     <dependencies>
