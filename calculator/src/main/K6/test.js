@@ -7,7 +7,7 @@ client.load(['../resources'], 'Calculator.proto');
 export const options = {
     vus: 1,
     iterations: 1,
-    duration: "40s",
+    duration: "2s",
 }
 
 export default () => {
