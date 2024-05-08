@@ -24,9 +24,16 @@ export default () => {
     'status is Unknown': (r) => r && r.status === grpc.StatusUnknown,
     'status is InvalidArgument': (r) => r && r.status === grpc.StatusInvalidArgument,
     'status is DeadlineExceeded': (r) => r && r.status === grpc.StatusDeadlineExceeded,
+    'response is not blank': (r) => r.message.ready != "",
+    'are only two headers': (r) => Object.keys(r.headers).length === 2,
+    'trailers are empty': (r) => Object.keys(r.trailers).length === 0, // The trailers are additional metadata sent after the body of the response. They can contain extra information about the response, such as authentication details, digital signatures, etc.
+    'error is null': (r) => r.error == null,
+
+
   });
 
   console.log(JSON.stringify(response.message));
+  console.log(JSON.stringify(response.headers));
 
   client.close();
 };
