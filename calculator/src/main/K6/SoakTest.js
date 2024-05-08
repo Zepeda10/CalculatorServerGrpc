@@ -1,21 +1,30 @@
 import grpc from 'k6/net/grpc';
 import { check, sleep } from 'k6';
+import { Counter } from 'k6/metrics';
 
 const client = new grpc.Client();
 client.load(['../resources'], 'Calculator.proto');
 
 export const options = {
     stages: [
-        {duration: "2m", target: 100},
-        {duration: "10m", target: 100},
-        {duration: "2m", target: 0}
+        {duration: "20s", target: 10},
+        {duration: "10s", target: 10},
+        {duration: "20s", target: 0}
     ]
 }
 
+const counterErrors = new Counter("connections_errors");
+
 export default () => {
-  client.connect('localhost:9090', {
-    plaintext: true
-  });
+
+    try{
+      client.connect('localhost:9090', {
+        plaintext: true
+      });
+    } catch(err){
+        console.error(err);
+        counterErrors.add(1);
+    }
 
   const data = { num1: 1, num2: 6 };
   const response = client.invoke('calculator.CalculatorService/Add', data);
